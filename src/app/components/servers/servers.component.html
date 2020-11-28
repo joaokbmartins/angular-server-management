@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <button
+      class="btn btn-primary btn-xs"
+      (click)="onGoUsersPage()"
+    >Users</button>
+    &nbsp;
+    <button
+      class="btn btn-primary btn-xs"
+      (click)="onGoHomePage()"
+    >Home Page</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12 col-sm-4">
+    <div class="list-group">
+      <a  
+        [routerLink]="['/servers','edit', server.id]"
+        [queryParams]="{allowEdit: false}"
+        fragment="loading"
+        *ngFor="let server of servers"
+        class="list-group-item"
+        >{{ server.name }}</a>
+        <!-- (click)="onSelectServer(server)" -->
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-4" *ngIf="selectedServer; else emptyServerList">
+    <app-edit-server></app-edit-server>
+    <hr>
+    <div>       
+      <p>{{ selectedServer.name }}</p>       
+      <p>Server status: {{ selectedServer.status ? 'Online' : 'Offline' }} </p>
+    </div>
+  </div>
+  <ng-template #emptyServerList>
+    <div class="col-xs-12">
+      <h4>Server list is empty</h4>
+    </div>
+  </ng-template>
+</div>

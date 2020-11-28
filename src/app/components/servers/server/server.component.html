@@ -1,0 +1,27 @@
+<div class="form-group">
+  <label for="name">Server Name</label>
+  <input
+    disabled
+    [value]="selectedServer.name"
+    type="text"
+    name="name"
+    id="name"
+    class="form-control"
+  />
+</div>
+<div class="form-group">
+  <label for="status">Server Status</label>
+  <select
+    name="status"
+    id="status"
+    class="form-control"
+    [(ngModel)]="this.serverStatus"
+  >
+    <option value="true">Online</option>
+    <option value="false">Offline</option>
+  </select>
+</div>
+<button
+  (click)="onUpdateServerStatus()"
+  class="btn btn-primary"
+>Update Server</button>
