@@ -5,9 +5,7 @@ import { Server } from './server.model';
 export class ServersService {
 
   serverListUpdated: EventEmitter<Server[]> = new EventEmitter<Server[]>();
-
   onServerSelected: EventEmitter<Server> = new EventEmitter<Server>();
-
   
   private servers: Server[] = [
     new Server(0,"TestServer", false ),
@@ -24,7 +22,7 @@ export class ServersService {
   }
 
   updateServerStatus(serverId: number, newStatus: boolean): void {
-    this.getServers()[serverId].status = newStatus;
+    this.servers[serverId].status = newStatus;
     this.serverListUpdated.emit(this.servers.slice());
   }
 
@@ -36,5 +34,5 @@ export class ServersService {
     this.servers[newServer.id] = newServer;
     this.serverListUpdated.emit(this.servers.slice());
   }
-
+ 
 }

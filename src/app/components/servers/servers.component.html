@@ -1,36 +1,29 @@
-<div class="row">
+<!-- <div class="row">
   <div class="col-xs-12 col-sm-4">
-    <button
-      class="btn btn-primary btn-xs"
-      (click)="onGoUsersPage()"
-    >Users</button>
+    <button class="btn btn-primary btn-xs" (click)="onGoUsersPage()">
+      Users
+    </button>
     &nbsp;
-    <button
-      class="btn btn-primary btn-xs"
-      (click)="onGoHomePage()"
-    >Home Page</button>
+    <button class="btn btn-primary btn-xs" (click)="onGoHomePage()">
+      Home Page
+    </button>
   </div>
 </div>
-<hr>
+<hr /> -->
 <div class="row">
-  <div class="col-xs-12 col-sm-4">
+  <div class="col-xs-12 col-sm-4" *ngIf="selectedServer; else emptyServerList">
     <div class="list-group">
-      <a  
-        [routerLink]="['/servers','edit', server.id]"
-        [queryParams]="{allowEdit: false}"
-        fragment="loading"
+      <!-- 'edit',  -->
+      <a
+        [routerLink]="['/servers', server.id]"
         *ngFor="let server of servers"
         class="list-group-item"
-        >{{ server.name }}</a>
+      >
+        <!-- [queryParams]="{allowEdit: false}"
+          fragment="loading" -->
         <!-- (click)="onSelectServer(server)" -->
-    </div>
-  </div>
-  <div class="col-xs-12 col-sm-4" *ngIf="selectedServer; else emptyServerList">
-    <app-edit-server></app-edit-server>
-    <hr>
-    <div>       
-      <p>{{ selectedServer.name }}</p>       
-      <p>Server status: {{ selectedServer.status ? 'Online' : 'Offline' }} </p>
+        {{ server.name }}
+      </a>
     </div>
   </div>
   <ng-template #emptyServerList>

@@ -1,5 +1,5 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Server } from '../server.model';
 import { ServersService } from '../servers.service';
@@ -17,27 +17,30 @@ export class EditServerComponent implements OnInit {
 
   constructor(
     private serversService: ServersService,
+    private router:Router,
     private activatedRoute: ActivatedRoute, 
   ) { }
   
   ngOnInit() {
-    this.getUrlData();
-    this.selectedServer = this.serversService.getServers()[0];
-    this.serversService.onServerSelected.subscribe(
-      (selectedServer: Server) => {
-        this.selectedServer = selectedServer;
-        this.serverStatus = selectedServer.status;
-      }
-    );
+    var id: number = this.activatedRoute.snapshot.params['id'];
+    this.selectedServer = this.serversService.getServerById(id);
+    this.serverStatus = this.selectedServer.status;
+    // this.getUrlData();
+    // this.selectedServer = this.serversService.getServers()[0];
+    // this.serversService.onServerSelected.subscribe(
+    //   (selectedServer: Server) => {
+    //     this.selectedServer = selectedServer;
+    //     this.serverStatus = selectedServer.status;
+    //   }
+    // );
   }
 
   getUrlData() {
-    // var id: number = this.route.snapshot.queryParams[''];
-    // this.serverName.this.route.snapshot.fragment);
   }
 
-  onUpdateServerStatus():void {
+  onUpdateServerStatus(): void { 
     this.serversService.updateServerStatus(this.selectedServer.id, this.serverStatus);
+    this.router.navigate(['/servers',this.selectedServer.id]);
   }
 
 }

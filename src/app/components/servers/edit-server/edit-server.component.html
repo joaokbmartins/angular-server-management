@@ -5,11 +5,11 @@
       <input
         type="text"
         class="form-control"
-        name="name"
-        id="name"
+        name="id"
+        id="id"
         [value]="selectedServer.id"
         disabled
-      >
+      />
     </div>
     <div class="form-group">
       <label for="name">Server Name</label>
@@ -18,8 +18,8 @@
         class="form-control"
         name="name"
         id="name"
-        [value]="selectedServer.name"
-      >
+        [(value)]="selectedServer.name"
+      />
     </div>
     <div class="form-group">
       <label for="status">Server Status</label>
@@ -27,11 +27,14 @@
         name="status"
         id="status"
         class="form-control"
+        [(ngModel)]="serverStatus"
       >
         <option value="true">Online</option>
         <option value="false">Offline</option>
       </select>
     </div>
-    <button class="btn btn-primary">Update Status</button>
+    <button class="btn btn-primary" (click)="onUpdateServerStatus()">
+      Update Status
+    </button>
   </div>
 </div>
