@@ -9,7 +9,7 @@ export class ServersService {
   
   private servers: Server[] = [
     new Server(0,"TestServer", false ),
-    new Server(1,"AdministrationServer", false ),
+    new Server(1,"AdministrationServer", true ),
     new Server(2,"ProductionServer", false ),
   ];
 

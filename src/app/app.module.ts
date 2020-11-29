@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms'; 
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -10,16 +9,11 @@ import { ServerComponent } from './components/servers/server/server.component';
 import { ServersComponent } from './components/servers/servers.component';
 import { UsersComponent } from './components/users/users.component';
 import { EditServerComponent } from './components/servers/edit-server/edit-server.component';
-
-const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'users', component: UsersComponent },
-  { path: 'users/:id', component: UserComponent },
-  { path: 'servers', component: ServersComponent },
-  { path: 'servers/:id', component: ServerComponent },
-  { path: 'servers/edit/:id', component: EditServerComponent },
-]
-
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard } from './auth-guard.service';
+import { AuthService } from './auth.service';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,13 +23,14 @@ const appRoutes: Routes = [
     ServerComponent, 
     ServersComponent,
     EditServerComponent,
+    PageNotFoundComponent,
   ], 
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [AuthGuard, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

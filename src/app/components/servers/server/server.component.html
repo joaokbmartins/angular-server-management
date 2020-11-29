@@ -1,49 +1,17 @@
-<div class="row">
-  <div class="col-xs-2 col-md-6 col-sm-4">
-    <div
-      [class]="'panel ' + (server.status ? 'panel-success' : 'panel-danger')"
-    >
-      <!-- [class]="'panel ' + (server.status ? 'panel-success' : 'panel-danger')" -->
-      <div class="panel-heading">
-        {{ server.name }}
+<div>
+  <div [class]="'panel ' + (server.status ? 'panel-success' : 'panel-danger')">
+    <div class="panel-heading">
+      {{ server.name }}
+    </div>
+    <div class="panel-body">
+      <div class="pull-left">
+        {{ server.status ? "Online" : "Offline" }}
       </div>
-      <div class="panel-body">
-        <div class="pull-left">
-          {{ server.status ? "Online" : "Offline" }}
-        </div>
-        <div class="pull-right">
-          <button (click)="onEditServer()" class="btn btn-xs btn-warning">
-            Edit <span class="glyphicon glyphicon-pencil"></span>
-          </button>
-        </div>
+      <div class="pull-right">
+        <button (click)="onEditServer()" class="btn btn-xs btn-warning">
+          Edit <span class="glyphicon glyphicon-pencil"></span>
+        </button>
       </div>
     </div>
   </div>
 </div>
-
-<!-- <div class="form-group">
-  <label for="name">Server Name</label>
-  <input
-    disabled
-    [value]="selectedServer.name"
-    type="text"
-    name="name"
-    id="name"
-    class="form-control"
-  />
-</div>
-<div class="form-group">
-  <label for="status">Server Status</label>
-  <select
-    name="status"
-    id="status"
-    class="form-control"
-    [(ngModel)]="this.serverStatus"
-  >
-    <option value="true">Online</option>
-    <option value="false">Offline</option>
-  </select>
-</div>
-<button (click)="onUpdateServerStatus()" class="btn btn-primary">
-  Update Server
-</button> -->
