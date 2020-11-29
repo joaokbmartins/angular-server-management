@@ -18,10 +18,12 @@ export class AuthService {
 
   login(): void {
     this.loggedIn = true;
+    console.log('User logged in.')
   }
-
+  
   logout(): void {
     this.loggedIn = false;
+    console.log('User logged out.')
   }
   
 }

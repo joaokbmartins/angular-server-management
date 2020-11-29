@@ -3,14 +3,15 @@ import {
   Router,
   RouterStateSnapshot,
   ActivatedRouteSnapshot,
-  CanActivate
+  CanActivate,
+  CanActivateChild
 } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { AuthService } from './auth.service';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanActivateChild {
 
   constructor(
     private router: Router,
@@ -29,6 +30,25 @@ export class AuthGuard implements CanActivate {
             return true;
           } else {
             this.router.navigate(['/']);
+          }
+        }
+      );
+  }
+
+  canActivateChild(
+    activatedRouteSnapshot: ActivatedRouteSnapshot,
+    routerStateSnapshot: RouterStateSnapshot
+  ): Observable<boolean> | Promise<boolean> | boolean {
+
+    return this.authService.isAuthenticated()
+      .then(
+        (authenticated: boolean) => {
+          if (authenticated) {
+            return true;
+          } else {
+            // alert("You're not authenticated!");
+            console.log("You're not authenticated!");
+            this.router.navigate(['servers']);
           }
         }
       );

@@ -17,6 +17,27 @@
         <li role="presentation" routerLinkActive="active">
           <a [routerLink]="['/users']">Users</a>
         </li>
+        <li
+          class="pull-right"
+          style="padding-top: 4px !important; padding-left: 4px !important"
+        >
+          <button
+            role="presentation"
+            class="btn btn-warning"
+            (click)="onLogout()"
+          >
+            Logout
+          </button>
+        </li>
+        <li class="pull-right" style="padding-top: 4px !important">
+          <button
+            role="presentation"
+            class="btn btn-primary"
+            (click)="onLogin()"
+          >
+            Login
+          </button>
+        </li>
       </ul>
     </div>
   </div>

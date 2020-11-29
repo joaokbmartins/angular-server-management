@@ -10,9 +10,9 @@ import { ServersComponent } from './components/servers/servers.component';
 import { UsersComponent } from './components/users/users.component';
 import { EditServerComponent } from './components/servers/edit-server/edit-server.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { AppRoutingModule } from './app-routing.module';
-import { AuthGuard } from './auth-guard.service';
-import { AuthService } from './auth.service';
+import { AppRoutingModule } from './app-routing.module'; 
+import { AuthGuard } from './shared/services/auth-guard.service';
+import { AuthService } from './shared/services/auth.service';
  
 @NgModule({
   declarations: [
