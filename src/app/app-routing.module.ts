@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { EditServerComponent } from './components/servers/edit-server/edit-server.component';
+import { ServerResolver } from './components/servers/server/server-resolver.service';
 import { ServerComponent } from './components/servers/server/server.component';
 import { ServersComponent } from './components/servers/servers.component';
 import { UserComponent } from './components/users/user/user.component';
@@ -31,12 +32,19 @@ const appRoutes: Routes = [
       AuthGuard
     ],
     component: ServersComponent, children: [
-      { path: ':id', component: ServerComponent },
+      {
+        path: ':id',
+        component: ServerComponent,
+        resolve: {
+          'serverResolved': ServerResolver
+        },
+      },
       {
         path: 'edit/:id', component: EditServerComponent,
         canDeactivate: [
           CanDeactivateGuard
-      ] },
+        ]
+      },
     ]
   },
   {
@@ -49,7 +57,7 @@ const appRoutes: Routes = [
 ]
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes), // { useHash: true }
   ],
   exports: [
     RouterModule,

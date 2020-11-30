@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+// import { ActivatedRouteSnapshot } from '@angular/router';
 
 import { Server } from './server/server.model';
 import { ServersService } from './servers.service';
@@ -14,10 +15,12 @@ export class ServersComponent implements OnInit {
   selectedServer: Server = null;
 
   constructor(
-    private serversServices: ServersService
+    private serversServices: ServersService,
+    // private activatedRouteSnapshot: ActivatedRouteSnapshot
   ) { }
   
   ngOnInit() {
+    // this.selectedServer = this.activatedRouteSnapshot.data['serverResolver'];
     this.servers = this.serversServices.getServers();
     this.selectedServer = this.servers.length > 0 ? this.servers[0] : null;
     this.serversServices.onServerSelected.subscribe(
