@@ -8,6 +8,7 @@ import { ServerComponent } from './components/servers/server/server.component';
 import { ServersComponent } from './components/servers/servers.component';
 import { UserComponent } from './components/users/user/user.component';
 import { UsersComponent } from './components/users/users.component';
+import { ErrorPageComponent } from './shared/components/error-page/error-page.component';
 import { AuthGuard } from './shared/services/auth-guard.service';
 import { CanDeactivateGuard } from './shared/services/can-deactivate-guard.service';
 
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
     ]
   },
   {
-    path: 'page-not-found', component: PageNotFoundComponent
+    // path: 'page-not-found', component: PageNotFoundComponent
+    path: 'page-not-found', component: ErrorPageComponent, data: {message: "404 - Page cannot be found."}
   },
   {
     path: '**', redirectTo: 'page-not-found'
