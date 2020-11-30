@@ -17,7 +17,16 @@ export class UsersService {
   }
 
   getUserById(id:number): User {
-    return this.getUsers()[id];
+    id = Number(id);
+    const user = this.users.find(
+      (userItem) => {
+        console.log(userItem.id);
+        
+        return userItem.id === id;
+      }
+    );
+    return user;
+    // return this.getUsers()[id];
   }
 
 }

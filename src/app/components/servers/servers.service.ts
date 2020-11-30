@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { Server } from './server.model';
+
+import { Server } from './server/server.model';
 
 @Injectable({providedIn: 'root'})
 export class ServersService {
@@ -27,8 +28,14 @@ export class ServersService {
     this.serverListUpdated.emit(this.servers.slice());
   }
 
-  getServerById(id:number): Server {
-    return this.getServers()[id];
+  getServerById(id: number): Server {
+    id = Number(id);
+    const server = this.servers.find(
+      (serverItem) => {
+        return serverItem.id === id;
+      }
+    )
+    return server;
   }
 
   updateServerById(newServer:Server): void {

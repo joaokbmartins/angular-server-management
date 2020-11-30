@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
-import { Server } from './server.model';
+import { Server } from './server/server.model';
 import { ServersService } from './servers.service';
 
 @Component({
@@ -15,8 +14,7 @@ export class ServersComponent implements OnInit {
   selectedServer: Server = null;
 
   constructor(
-    private serversServices: ServersService,
-    private router: Router
+    private serversServices: ServersService
   ) { }
   
   ngOnInit() {
@@ -31,14 +29,6 @@ export class ServersComponent implements OnInit {
 
   onSelectServer(selectedServer:Server) {
     this.serversServices.onSelectServer(selectedServer);
-  }
-
-  onGoUsersPage() {
-    this.router.navigate(['/users']);
-  }
-
-  onGoHomePage() {
-    this.router.navigate(['/']);
   }
 
 }

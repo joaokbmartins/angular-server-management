@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { CanComponentDeactivate } from 'src/app/shared/services/can-deactivate-guard.service';
-import { Server } from '../server.model';
+import { Server } from '../server/server.model';
 import { ServersService } from '../servers.service';
 
 @Component ({
@@ -34,15 +34,15 @@ export class EditServerComponent implements OnInit, CanComponentDeactivate {
     this.selectedServer = this.serversService.getServerById(id);
     this.serverStatus = this.selectedServer.status;
     this.serverName = this.selectedServer.name;
-    this.activatedRoute.params.subscribe(
-      (params: Params) => {
-        id = this.activatedRoute.snapshot.params['id'];
-        this.selectedServer = this.serversService.getServerById(id);
-        this.serverStatus = this.selectedServer.status;
-        this.serverName = this.selectedServer.name;
-        console.log("subscribed");
-      }
-    );
+    // this.activatedRoute.params.subscribe(
+    //   (params: Params) => {
+    //     var id:number = this.activatedRoute.snapshot.params['id'];
+    //     this.selectedServer = this.serversService.getServerById(id);
+    //     this.serverStatus = this.selectedServer.status;
+    //     this.serverName = this.selectedServer.name;
+    //     console.log("subscribed");
+    //   }
+    // );
   }  
 
   onUpdateServerStatus(): void { 
@@ -50,7 +50,7 @@ export class EditServerComponent implements OnInit, CanComponentDeactivate {
     this.changesSaved = true;
     // this.router.navigate(['../../',this.selectedServer.id], {relativeTo: this.activatedRoute});
     this.router.navigate(['/servers', this.selectedServer.id]);
-    console.log("Changes saved!. You'll be redirected...");
+    // console.log("Changes saved!. You'll be redirected...");
   }
 
   setServerStatus(selectedStatus:Event): void {
@@ -58,8 +58,7 @@ export class EditServerComponent implements OnInit, CanComponentDeactivate {
   }
 
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean {
-    console.log(this.serverStatus, this.selectedServer.status, this.serverName, this.selectedServer.name);
-    
+    // console.log(this.serverStatus, this.selectedServer.status, this.serverName, this.selectedServer.name);
     if (!this.allowEdit) {
       return true;
     } else if ((this.serverStatus != this.selectedServer.status || this.serverName != this.selectedServer.name) && !this.changesSaved) {

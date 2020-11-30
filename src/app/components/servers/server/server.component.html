@@ -1,5 +1,5 @@
 <div>
-  <div [class]="'panel ' + (server.status ? 'panel-success' : 'panel-danger')">
+  <div [class]="['panel', server.status ? 'panel-success' : 'panel-danger']">
     <div class="panel-heading">
       {{ server.name }}
     </div>
