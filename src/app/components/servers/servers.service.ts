@@ -21,7 +21,8 @@ export class ServersService {
     this.onServerSelected.emit(selectedServer);
   }
 
-  updateServerStatus(serverId: number, newStatus: boolean): void {
+  updateServerStatus(serverId: number, newName:string, newStatus: boolean): void {
+    this.servers[serverId].name = newName;
     this.servers[serverId].status = newStatus;
     this.serverListUpdated.emit(this.servers.slice());
   }

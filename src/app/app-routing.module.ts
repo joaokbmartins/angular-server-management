@@ -9,6 +9,7 @@ import { ServersComponent } from './components/servers/servers.component';
 import { UserComponent } from './components/users/user/user.component';
 import { UsersComponent } from './components/users/users.component';
 import { AuthGuard } from './shared/services/auth-guard.service';
+import { CanDeactivateGuard } from './shared/services/can-deactivate-guard.service';
 
 const appRoutes: Routes = [
   // { path: '', redirectTo: '/page-not-found', pathMatch:'full' },
@@ -30,7 +31,11 @@ const appRoutes: Routes = [
     ],
     component: ServersComponent, children: [
       { path: ':id', component: ServerComponent },
-      { path: 'edit/:id', component: EditServerComponent },
+      {
+        path: 'edit/:id', component: EditServerComponent,
+        canDeactivate: [
+          CanDeactivateGuard
+      ] },
     ]
   },
   {
